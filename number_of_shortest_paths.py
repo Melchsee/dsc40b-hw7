@@ -20,7 +20,7 @@ def number_of_shortest_paths(graph, source):
                 predecessor[v] = u
                 pending.append(v)
                 shortest_paths[v] = 1
-            if status[v] == 'pending' and distance(v) == distance[u] + 1:
+            if status[v] == 'pending' and distance(v) == (distance[u] + 1):
                 shortest_paths[v] += 1
         status[u] = 'visited'
 
