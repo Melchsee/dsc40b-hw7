@@ -4,7 +4,6 @@ from collections import deque
 def number_of_shortest_paths(graph, source):
     status = {node: 'undiscovered' for node in graph.nodes}
     distance = {node: float('inf') for node in graph.nodes}
-    predecessor = {node: None for node in graph.nodes}
     shortest_paths = {node: float('inf') for node in graph.nodes}
 
     status[source] = 'pending'
@@ -17,10 +16,9 @@ def number_of_shortest_paths(graph, source):
             if status[v] == 'undiscovered':
                 status[v] = 'pending'
                 distance[v] = distance[u] + 1
-                predecessor[v] = u
                 pending.append(v)
                 shortest_paths[v] = 1
-            if status[v] == 'pending':
+            if status[v] == 'pending' and (distance[v] == distance[u] + 1):
                 shortest_paths[v] = shortest_paths[v] + 1
         status[u] = 'visited'
 
